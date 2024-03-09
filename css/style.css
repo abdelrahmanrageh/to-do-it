@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    margin-top: 50px;
+    margin-bottom: 150px;
+
+}
+.input-group{
+    height: 50px;
+}
+.done{
+    position: absolute;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+}
+.details{
+    opacity: 0;
+    display: block;
+    height: 0;
+    visibility: hidden;
+    transition: .2s;
+}
+.list-group-item{
+    height: 50px;
+    transition: .5s;
+    word-wrap: break-word;
+}
+.flex{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+#clear{
+    cursor: pointer;
+}
