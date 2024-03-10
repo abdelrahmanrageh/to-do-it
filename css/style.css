@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
 *{
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: cairo;
+    font-family: "Tajawal", sans-serif;
 }
 .navbar{
     height: 100px;
-    margin-bottom: 50px;
+    margin-bottom: 130px;
+    /* background-color: #11385f !important; */
 }
 .navbar img{
     width: 35px;
@@ -16,14 +18,40 @@
 .input-group{
     height: 50px;
     margin-bottom: 60px !important;
+
 }
-.container h2:nth-child(1){
+body{
+    background-image: url('../media/background.png');
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.container h2{
     text-align: center;
-    font-weight: 800;
+    font-weight: 900;
+    font-size: 35px;
 }
-h2{
-    font-weight: 600;
-    margin-bottom:20px ;
+.container h2:nth-child(2){
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+.btn{
+    background-color: #11385f;
+    color: white;
+}
+.btn:hover{
+    background-color: #0a2c4e;
+    color: white;
+}
+
+.tasks-label{
+    text-align: start !important;
+    font-weight: 600 !important;
+    font-size: 30px !important;
+    margin-bottom:20px !important;
+    opacity: 0;
+    transition: .3s;
 }
 .details{
     opacity: 0;
@@ -36,6 +64,17 @@ h2{
     height: 50px;
     transition: .5s;
     word-wrap: break-word;
+}
+.list-group-item.active{
+    background-color: #11385f;
+    border-color: #11385f;
+}
+.form-check-input:checked{
+    background-color: #11385f;
+    border-color: #11385f;
+}
+.navbar .form-check-input:checked{
+    border-color: white;
 }
 .flex{
     margin-top: 30px;
@@ -51,11 +90,22 @@ h2{
 .fa-trash{
     font-size: 20px;
     margin-right: 1px;
+    cursor: pointer;
 }
 .done{
     margin-top: 5px;
     width: 19px;
     height: 19px;
+    cursor: pointer;
+}
+footer{
+
+    width: 100%;
+    height: 50px;
+    background-color: #11385f;
+    color: white;
+    text-align: center;
+    margin-top: 20px;
 }
 /* .form-switch{
     margin-bottom: 50px;
