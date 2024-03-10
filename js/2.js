@@ -8,7 +8,7 @@ if(window.localStorage.darkMode === 'true'){
     document.body.setAttribute('data-bs-theme', 'dark');
     darkSwitch.setAttribute('checked' , '');
 }
-else if(window.localStorage.darkMode === 'false' || !window.localStorage.darkMode){
+else if(window.localStorage.darkMode === 'false'){
     document.body.setAttribute('data-bs-theme', 'light');
     darkSwitch.removeAttribute('checked');
 }
@@ -198,8 +198,9 @@ listGroup.addEventListener('click', function(event){
     checkTasks();
 });
 
+//check if there are tasks in the local storage(to hide tasks label)
 function checkTasks(){
-    if(window.localStorage.tasks === '[]'){
+    if(window.localStorage.tasks === '[]' || !window.localStorage.tasks){
         document.querySelector('.tasks-label').style.opacity = '0';
     }else{
         document.querySelector('.tasks-label').style.opacity = '1';
