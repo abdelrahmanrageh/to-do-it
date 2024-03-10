@@ -1,3 +1,21 @@
+let darkSwitch = document.querySelector('.dark-switch');
+window.localStorage.darkMode === 'true'
+
+darkSwitch.addEventListener('click', function() {
+    if(window.localStorage.darkMode === 'true'){
+        window.localStorage.setItem('darkMode', 'false');
+        darkSwitch.removeAttribute('checked');
+        document.body.setAttribute('data-bs-theme', 'light');
+
+    }
+    else{
+        darkSwitch.setAttribute('checked' , '');
+        window.localStorage.setItem('darkMode', 'true');
+        document.body.setAttribute('data-bs-theme', 'dark');
+    }
+});
+
+
 let addBtn = document.getElementById('button-addon2');
 let taskTitle = document.querySelector('.title');
 let taskInput = document.getElementById('task');
@@ -47,6 +65,7 @@ function addTaskTpage(taskValue , taskTitle , dateAdded){
 
     let taskText = document.createElement('p');
     taskText.classList.add('mb-1');
+    taskText.style.display = 'none';
     taskText.innerText = taskValue;
 
     let detailsDiv = document.createElement('div');
@@ -56,10 +75,9 @@ function addTaskTpage(taskValue , taskTitle , dateAdded){
 
     let checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
-    checkBox.classList.add('form-check-input');
+    checkBox.classList.add('form-check-input' , 'done');
 
     checkBoxLabel.appendChild(checkBox);
-    checkBoxLabel.appendChild(document.createTextNode(' Done'));
 
     flexDiv.appendChild(taskDate);
     flexDiv.appendChild(trashIcon);
@@ -139,19 +157,22 @@ listGroup.addEventListener('mousedown', function(event){
         else if(task.classList.contains('active')){
             task.classList.remove('active');
             task.children[1].style.visibility = 'hidden';
-            // task.children[2].style.visibility = 'hidden';
             task.children[1].style.opacity = '0';
-            // task.children[2].style.opacity = '0';
             task.style.height = '50px';
+
         }
         //expand the task
         else{
             task.classList.add('active');
+            task.children[1].children[0].style.display = 'block';
             task.children[1].style.visibility = 'visible';
-            // task.children[2].style.visibility = 'visible';
             task.children[1].style.opacity = '1';
-            // task.children[2].style.opacity = '1';
             task.style.height = +task.scrollHeight + 25 + "px";
         }
     }
 });
+
+
+
+
+

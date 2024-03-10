@@ -1,20 +1,29 @@
 *{
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: cairo;
 }
-
-.container{
-    margin-top: 50px;
-    margin-bottom: 150px;
-
+.navbar{
+    height: 100px;
+    margin-bottom: 50px;
+}
+.navbar img{
+    width: 35px;
+}
+.brand{
+    margin-left: 5px;
 }
 .input-group{
     height: 50px;
+    margin-bottom: 60px !important;
 }
-.done{
-    position: absolute;
-    right: 15px;
-    width: 20px;
-    height: 20px;
+.container h2:nth-child(1){
+    text-align: center;
+    font-weight: 800;
+}
+h2{
+    font-weight: 600;
+    margin-bottom:20px ;
 }
 .details{
     opacity: 0;
@@ -33,6 +42,23 @@
     display: flex;
     justify-content: space-between;
 }
+.mb-1{
+    font-weight: 600;
+}
 #clear{
     cursor: pointer;
 }
+.fa-trash{
+    font-size: 20px;
+    margin-right: 1px;
+}
+.done{
+    margin-top: 5px;
+    width: 19px;
+    height: 19px;
+}
+/* .form-switch{
+    margin-bottom: 50px;
+} */
+
+
