@@ -53,11 +53,14 @@ body{
     opacity: 0;
     transition: .3s;
 }
+.list-group{
+    margin-bottom: 20px;
+}
 .details{
     opacity: 0;
     display: block;
     height: 0;
-    visibility: hidden;
+    /* visibility: hidden; */
     transition: .2s;
 }
 .list-group-item{

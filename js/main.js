@@ -1,18 +1,41 @@
+checkTasks();
+
+
+//
+
+
+
+
+
+
+
+
 //dark theme switch
 let darkSwitch = document.querySelector('.dark-switch');
 window.localStorage.darkMode === 'true'
+
+if(window.localStorage.darkMode === 'true'){
+    document.body.setAttribute('data-bs-theme', 'dark');
+    darkSwitch.setAttribute('checked' , '');
+}
+else if(window.localStorage.darkMode === 'false'){
+    document.body.setAttribute('data-bs-theme', 'light');
+    darkSwitch.removeAttribute('checked');
+}
 
 darkSwitch.addEventListener('click', function() {
     if(window.localStorage.darkMode === 'true'){
         window.localStorage.setItem('darkMode', 'false');
         darkSwitch.removeAttribute('checked');
         document.body.setAttribute('data-bs-theme', 'light');
-
+        document.querySelector('body::before').style.backgroundColor = '#ffffffd5';
     }
-    else{
+    else if(window.localStorage.darkMode === 'false' || !window.localStorage.darkMode){
         darkSwitch.setAttribute('checked' , '');
         window.localStorage.setItem('darkMode', 'true');
         document.body.setAttribute('data-bs-theme', 'dark');
+        // document.querySelector('body::before').style.backgroundColor = '#212529f1';
+        
     }
 });
 
@@ -24,34 +47,32 @@ let listGroup = document.querySelector('.list-group');
 let clearBtn = document.getElementById('clear');
 let tasksArray = [];
 
-// checks if there are tasks in the local storage
+// checks if there are tasks in the local storage(when reload)
 if(window.localStorage.tasks){
     tasksArray = JSON.parse(window.localStorage.tasks);
     for(let i of tasksArray){
-        addTaskTpage(i.taskValue , i.taskTitle , i.dateAdded);
+        addTaskTpage(i.taskValue , i.taskTitle , i.dateAdded , i.checked);
     }
-} if(!window.localStorage.tasks){
-    document.querySelector('.tasks-label').style.display = 'none';
 }
 
 //add tasks to the array
-function addTaskToArray(taskValue , taskTitle , addedDate) {
+function addTaskToArray(taskValue , taskTitle , addedDate , checked ) {
     let newTask = {
         taskTitle: taskTitle,
         taskValue: taskValue,
         dateAdded: addedDate,
+        checked: checked,
         id: new Date().getTime(),
     }
     tasksArray.push(newTask);
-    addTaskTpage(taskValue , taskTitle ,addedDate);
+    addTaskTpage(taskValue , taskTitle ,addedDate , checked);
 }
 
 //add tasks to the page
-function addTaskTpage(taskValue , taskTitle , dateAdded){
+function addTaskTpage(taskValue , taskTitle , dateAdded , checked){
     //create the task
     let parent = document.createElement('a');
     parent.classList.add('list-group-item' , 'list-group-item-action' );
-    
     
     let taskDiv = document.createElement('div');
     taskDiv.classList.add('d-flex', 'w-100', 'justify-content-between');
@@ -80,9 +101,20 @@ function addTaskTpage(taskValue , taskTitle , dateAdded){
     //details of the task(task value, checkbox and trash icon)
     let detailsDiv = document.createElement('div');
     
+    let checkBoxLabel = document.createElement('label');
+    checkBoxLabel.classList.add('form-check-label');
+
     let checkBox = document.createElement('input');
     checkBox.type = 'checkbox';
     checkBox.classList.add('form-check-input' , 'done');
+    if(checked){
+        checkBox.setAttribute('checked' , '');
+        // taskName.style.textDecoration = 'line-through';
+        // taskText.style.textDecoration = 'line-through';
+    }else
+        checkBox.removeAttribute('checked');
+
+    checkBoxLabel.appendChild(checkBox);
 
     flexDiv.appendChild(taskDate);
     flexDiv.appendChild(trashIcon);
@@ -92,12 +124,15 @@ function addTaskTpage(taskValue , taskTitle , dateAdded){
     detailsDiv.appendChild(flexDiv);
 
     taskDiv.appendChild(taskName);
+    taskDiv.appendChild(checkBoxLabel)
 
     parent.appendChild(taskDiv);
     parent.appendChild(detailsDiv);
     
     //append the task to the list of tasks
     listGroup.appendChild(parent);
+
+    checkTasks();
 }
 
 //passing data from form to the array(when clicking the add button)
@@ -109,8 +144,9 @@ addBtn.addEventListener('click', function() {
         let taskTitleValue = taskTitle.value;
         let taskValue = taskInput.value;
         let addedDate = new Date().toLocaleString();
+        let checked = false;
 
-        addTaskToArray(taskValue , taskTitleValue , addedDate);
+        addTaskToArray(taskValue , taskTitleValue , addedDate , checked);
         window.localStorage.tasks = JSON.stringify(tasksArray);  
         
         taskInput.value = '';
@@ -119,6 +155,7 @@ addBtn.addEventListener('click', function() {
         taskInput.classList.remove('is-invalid');
         taskTitle.classList.remove('is-invalid');       
     }
+    checkTasks();
 });
 
 //handle the enter key press
@@ -131,57 +168,79 @@ function handleKeyPress(element){
         }
     });
 };
+
 handleKeyPress(taskTitle);
 handleKeyPress(taskInput);
 
 //events of clicking on tasks
 listGroup.addEventListener('click', function(event){
-    if(event.value === 'click'){
-        let task = event.target.closest('a');
-        
-        // deleteTask();
-        if(event.target.classList.contains('fa-trash')){
-            let deleteTarget = event.target.parentElement.children[0].innerText;
-            for(let everyTask of tasksArray){
-                if(everyTask.dateAdded === deleteTarget.slice(10)){
-                    tasksArray.splice(tasksArray.indexOf(everyTask), 1);
-                    window.localStorage.tasks = JSON.stringify(tasksArray);
-                }
+    let task = event.target.closest('a');
+    
+    //clicking on checkbox
+    if(event.target.classList.contains('done')){
+        let deleteTarget = event.target.parentElement.parentElement.nextElementSibling.children[1].children[0].innerText;
+        // console.log(deleteTarget);
+        for(let everyTask of tasksArray){
+            if(everyTask.dateAdded === deleteTarget.slice(10)){
+
+                console.log(everyTask);
+                if(everyTask.checked)
+                    everyTask.checked = false;
+                else
+                    everyTask.checked = true;
+                window.localStorage.tasks = JSON.stringify(tasksArray);
             }
-            task.style.opacity = '0';
-            task.style.height = '0';
-            task.style.padding = '0';
-            task.style.margin = '0';
-            setTimeout(() => {
-                task.remove();}
-            , 500);
-        }
-
-        //mark as done
-        else if(event.target.type === 'checkbox'){
-            return;
-        }
-
-        //collapse the task 
-        else if(task.classList.contains('active')){
-            task.classList.remove('active');
-            task.children[1].style.visibility = 'hidden';
-            task.children[1].style.opacity = '0';
-            task.style.height = '50px';
-
-        }
-        //expand the task
-        else{
-            task.classList.add('active');
-            task.children[1].children[0].style.display = 'block';
-            task.children[1].style.visibility = 'visible';
-            task.children[1].style.opacity = '1';
-            task.style.height = +task.scrollHeight + 25 + "px";
         }
     }
+    
+    // deleteTask();
+    if(event.target.classList.contains('fa-trash')){
+        let deleteTarget = event.target.parentElement.children[0].innerText;
+        for(let everyTask of tasksArray){
+            if(everyTask.dateAdded === deleteTarget.slice(10)){
+                tasksArray.splice(tasksArray.indexOf(everyTask), 1);
+                window.localStorage.tasks = JSON.stringify(tasksArray);
+            }
+        }
+        task.style.opacity = '0';
+        task.style.height = '0';
+        task.style.padding = '0';
+        task.style.margin = '0';
+        setTimeout(() => {
+            task.remove();}
+        , 500);
+    }
+    else if(event.target.type === 'checkbox'){
+        return;
+    }
+    //collapse the task 
+    else if(task.classList.contains('active')){
+        task.classList.remove('active');
+        task.children[1].style.opacity = '0';
+        task.style.height = '50px';
+        setTimeout(() => {
+            task.children[1].children[0].style.display = 'none';
+        }, 550);
+    }
+    //expand the task
+    else{
+        task.classList.add('active');
+        task.children[1].children[0].style.display = 'block';
+        setTimeout(() => {
+            task.children[1].style.opacity = '1';
+            task.style.height = +task.scrollHeight + 25 + "px";
+        }, 100);
+    }
+    checkTasks();
 });
 
-
-
+//check if there are tasks in the local storage(to hide tasks label)
+function checkTasks(){
+    if(window.localStorage.tasks === '[]' || !window.localStorage.tasks){
+        document.querySelector('.tasks-label').style.opacity = '0';
+    }else{
+        document.querySelector('.tasks-label').style.opacity = '1';
+    }
+}
 
 
