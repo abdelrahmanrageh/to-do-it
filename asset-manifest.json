@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/to-do-it/static/css/main.b470e264.css",
+    "main.js": "/to-do-it/static/js/main.4c017f72.js",
+    "static/js/453.0f48bf40.chunk.js": "/to-do-it/static/js/453.0f48bf40.chunk.js",
+    "static/media/emptytasks.png": "/to-do-it/static/media/emptytasks.70efeda3ae08ee22e89a.png",
+    "static/media/sound.mp3": "/to-do-it/static/media/sound.4128e0c6b330111ed289.mp3",
+    "static/media/android-chrome-192x192.png": "/to-do-it/static/media/android-chrome-192x192.bfe0c38cd7fcd7df027c.png",
+    "index.html": "/to-do-it/index.html",
+    "main.b470e264.css.map": "/to-do-it/static/css/main.b470e264.css.map",
+    "main.4c017f72.js.map": "/to-do-it/static/js/main.4c017f72.js.map",
+    "453.0f48bf40.chunk.js.map": "/to-do-it/static/js/453.0f48bf40.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b470e264.css",
+    "static/js/main.4c017f72.js"
+  ]
+}
