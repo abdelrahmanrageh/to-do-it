@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+*{
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: "Tajawal", sans-serif;
+}
+body{
+    /* ackground-image: url('../media/background.png'); */
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.add-task-button{
+    display: none;
+    background-color: #0f3e6d;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    z-index: 5000;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    margin: auto;
+    cursor: pointer;
+    transition: .3s;
+}
+.add-task-button:hover{
+    background-color: #0a2c4e;
+}
+.navbar{
+    height: 70px;
+    margin-bottom: 30px;
+    /* background-color: #11385f !important; */
+}
+.date{
+    margin-bottom: 30px;
+}
+.navbar img{
+    width: 35px;
+}
+.brand{
+    margin-left: 5px;
+}
+.input-group{
+    height: 50px;
+    margin-bottom: 60px !important;
+}
+footer{
+    width: 100%;
+    height: 50px;
+    /* background-color: #11385f; */
+    color: white;
+    text-align: center;
+    margin-top: 35px;
+}

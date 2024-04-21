@@ -1,0 +1,51 @@
+.swal-modal{
+    height: 260px;
+    padding-bottom: 15px;
+}
+.swal-content__input{
+    color: #11385f !important;
+}
+.swal-title,
+.swal-text{
+    color: #11385f;
+
+}
+.swal-icon--warning{
+    width: 50px;
+    height: 50px;
+    margin: 10px auto;
+}
+.swal-icon--warning__body{
+    background-color: #d23d3d;
+    width: 4px;
+    height: 23px;
+}
+.swal-icon--warning__dot {
+    background-color: #d23d3d;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    margin-left: -2px;
+    bottom: -6px;
+
+}
+.swal-footer {
+    margin-top: 0px;
+}
+.swal-title:not(:last-child) {
+    margin-bottom: 1px;
+    margin-top: 0px;
+    padding-top: 0;
+}
+
+.swal-button{
+    background-color: #11385f;
+    color: white;
+}
+.swal-button--danger{
+    background-color: #d23d3d;
+}
+.swal-button--cancel:not([disabled]):hover,
+.swal-button:not([disabled] , .swal-button--danger):hover {
+    background-color: #2c4c6c;
+}
