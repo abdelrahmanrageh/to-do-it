@@ -5,7 +5,7 @@ import sound from './media/sound.mp3';
 function Task(props) {
     const [opened, setOpened] = useState(false);
     const [done, setDone] = useState(props.task.done);
-    const [audio, setAudio] = useState(new Audio(sound));
+    const audio = new Audio(sound);
     audio.volume = 0.3;
     audio.preload = 'auto';
     
