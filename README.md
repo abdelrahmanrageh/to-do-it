@@ -27,5 +27,9 @@
 <a href="https://ibb.co/PNwgvgv"><img width ='600' src="https://i.ibb.co/HVnqfqf/Screenshot-2024-04-22-211728.png" alt="Screenshot-2024-04-22-211728" border="0" /></a>
 <br>
 
+<h3>Makr it as done</h3>
+<a href="https://ibb.co/VTr6t27"><img width ='600' src="https://i.ibb.co/0r85chg/Screenshot-2024-04-22-211859.png" alt="Screenshot-2024-04-22-211859" border="0" /></a>
+<br>
+
 <h3>Delete it</h3>
 <a href="https://ibb.co/VDCSXxG"><img width ='600' src="https://i.ibb.co/rMp6n3h/Screenshot-2024-04-22-211752.png" alt="Screenshot-2024-04-22-211752" border="0" /></a>
