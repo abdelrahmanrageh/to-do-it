@@ -30,7 +30,7 @@ function Input() {
             })}`,
             done : false
         }
-        taskTitle && setTasks([...tasks, newTask]);
+        taskTitle && setTasks([newTask , ...tasks]);
         setTaskTitle("");
     } 
 
@@ -70,21 +70,25 @@ function Input() {
     
     const closeEditTask = () => {
         if (inputValue.trim() === '') {
-            deleteTask(editTaskId);
+            // deleteTask(editTaskId);
             setShowPopup(false);
         }
         else {
             const newTasks = tasks.map((task) => {
                 if (task.id === editTaskId) {
-                    task.title = inputValue;
-                    task.date = `Edited at: ${new Date().toLocaleDateString(
-                        undefined, {
-                            weekday: 'short',
-                            day: 'numeric',
-                            month: 'numeric',
-                            hour: 'numeric',
-                            minute: 'numeric'
-                    })}`;
+                    if (task.title === inputValue) 
+                        return task;
+                    else {
+                        task.title = inputValue;
+                        task.date = `Edited at: ${new Date().toLocaleDateString(
+                            undefined, {
+                                weekday: 'short',
+                                day: 'numeric',
+                                month: 'numeric',
+                                hour: 'numeric',
+                                minute: 'numeric'
+                        })}`;
+                    }
                 }
                 return task;
             });
@@ -99,7 +103,7 @@ function Input() {
         }
         else if (event.key === 'Enter'){
             if (inputValue.trim() === '') {
-                deleteTask(editTaskId);
+                // deleteTask(editTaskId);
                 setShowPopup(false);
             }
             else
