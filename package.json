@@ -2,7 +2,7 @@
   "name": "react-course2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://abdelrahmanrageh.github.io/to-do-it",
+  "homepage": "https://abdelrahmanrageh.github.io/To-Do-it",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@testing-library/jest-dom": "^5.17.0",
